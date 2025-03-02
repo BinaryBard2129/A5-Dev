@@ -86,3 +86,12 @@ function updateDate(){
   document.getElementById('current-date').innerText = formattedDate;
 }
 updateDate();
+
+document.addEventListener('DOMContentLoaded',function(){
+    const discoverBox = document.getElementById('discover-box');
+    discoverBox.addEventListener('click',function(){
+
+        window.location.href = 'main.html';
+
+    })
+})
