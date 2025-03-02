@@ -22,6 +22,8 @@ function updateTaskcount(){
 
 function markAsCompleted(taskname, button){
     button.disabled = true;
+    button.classList.add('opacity-50')
+
     remainingTask--;
     completedTasks++;
     updateTaskcount();
@@ -33,7 +35,27 @@ function markAsCompleted(taskname, button){
     const logmessage = document.createElement('p');
     logmessage.innerText = "You have Completed The Task " + taskname + " at " + currentTime;
     activityLog.appendChild(logmessage);
+
+   logmessage.classList.add(
+      'bg-gray-200',   
+        'p-2',           
+        'rounded-md',    
+        'my-1',          
+        'text-sm',       
+        'text-gray-700' 
+   )
+
+
+
+    if (remainingTask === 0) {
+        setTimeout(function() {
+            alert("Congratulations! You've completed all tasks.");
+        }, 100); 
+    }
+
 }
+
+
 
 function clearhistory(){
     document.getElementById('activity-log').innerHTML = ' ';
@@ -46,6 +68,7 @@ taskbutton.forEach((button, index) => {
       'Add dark mode', 
       'Optimize Home page', 
       'Add new emoji 🤲', 
+      'Integrate openAI API',
       'Improve job searching'
     ];
 
@@ -55,3 +78,11 @@ taskbutton.forEach((button, index) => {
     });
 
     document.getElementById('clear-history').addEventListener('click', clearhistory);
+
+function updateDate(){
+  const date   = new Date();
+  const option = {weekday: "short", month: "short", day:'numeric', year: "numeric"};
+  const formattedDate = date.toLocaleDateString('en-US', option);
+  document.getElementById('current-date').innerText = formattedDate;
+}
+updateDate();
